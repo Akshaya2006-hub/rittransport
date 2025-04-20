@@ -1,0 +1,141 @@
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+ 
+  padding: 20px;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+}
+
+
+.motto {
+  font-style: italic;
+  font-size: 12px;
+  color: #555;
+}
+
+.title {
+  font-size: 2rem;
+  color: #1a237e;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+/* Form Styles */
+.login-form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #1a237e;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-field:focus {
+  border-color: #0d1757;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+button {
+  padding: 10px 20px;
+  border: 1px solid #1a237e;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: white;
+  color: #1a237e;
+}
+
+button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .header {
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    margin-left: 0;
+    text-align: center;
+  }
+  
+  .logo-section {
+    align-items: center;
+  }
+  
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.2rem;
+  }
+  
+  .logo {
+    height: 80px;
+  }
+}
