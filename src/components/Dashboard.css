@@ -1,3 +1,5 @@
+/* Dashboard.css */
+
 /* Base Styles */
 * {
   margin: 0;
@@ -11,7 +13,7 @@ html, body {
   width: 100%;
 }
 
-.app-container {
+.Dashboard-app-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -19,7 +21,7 @@ html, body {
 }
 
 /* Header Section - Now left-aligned */
-.header {
+.Dashboard-header {
   display: flex;
   align-items: center;
   padding: 20px 40px;
@@ -27,12 +29,12 @@ html, body {
   width: 100%;
 }
 
-.logo-section {
+.Dashboard-logo-section {
   display: flex;
   align-items: center;
 }
 
-.logo {
+.Dashboard-logo {
   height: 80px;
   width: auto;
 }
@@ -169,7 +171,7 @@ html, body {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     grid-gap: 20px;
   }
-  
+
   .sidebar {
     width: 200px;
   }
@@ -181,26 +183,27 @@ html, body {
     align-items: flex-start;
     padding: 15px;
   }
-  
+
   .title {
     margin-left: 0;
     margin-top: 10px;
     font-size: 1.2rem;
   }
-  
+
   .content-container {
     flex-direction: column;
   }
-  
+
   .sidebar {
     width: 100%;
     order: 2;
   }
-  
+
   .dashboard-content {
     order: 3;
   }
 }
+
 /* Interactive menu styles */
 .menu-item {
   cursor: pointer;

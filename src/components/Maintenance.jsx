@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './Dashboard.css';
 import ritLogo from './assets/rit-logo-new.png'; 
 
-function Dashboard() {
-  const [activeMenu, setActiveMenu] = useState('Dashboard');
+function Maintenance() {
+  const [activeMenu, setActiveMenu] = useState('Maintenance');
   const [flashCard, setFlashCard] = useState(null);
   
   // Handle menu item click
@@ -30,7 +30,7 @@ function Dashboard() {
         <div className="logo-section">
           <img src={ritLogo} alt="RIT Logo" className="logo" />
         </div>
-        <h1 className="title">WELCOME</h1>
+        <h1 className="title">MAINTENANCE</h1>
       </header>
       
       {/* Content container with sidebar and dashboard */}
@@ -63,39 +63,33 @@ function Dashboard() {
           </div>
         </nav>
         
-        {/* Dashboard content */}
         <main className="dashboard-content">
           <div 
-            className={`card ${flashCard === "Today's Task" ? 'flash' : ''}`}
-            onClick={() => handleCardClick("Today's Task")}
+            className={`card ${flashCard === "To be service" ? 'flash' : ''}`}
+            onClick={() => handleCardClick("To be service")}
           >
-            <div className="card-title">Today's Task</div>
-            <div className="card-value">7<span className="denominator">/7</span></div>
+            <div className="card-title">To be service</div>
+            
           </div>
           <div 
-            className={`card ${flashCard === "Total Vehicle" ? 'flash' : ''}`}
-            onClick={() => handleCardClick("Total Vehicle")}
+            className={`card ${flashCard === "Out for Service" ? 'flash' : ''}`}
+            onClick={() => handleCardClick("Out for Service")}
           >
-            <div className="card-title">Total Vehicle</div>
-            <div className="card-value">34<span className="denominator">/34</span></div>
+            <div className="card-title">Out for Service</div>
+            
+          </div>
+          
+          <div 
+            className={`card ${flashCard === "Open Issues" ? 'flash' : ''}`}
+            onClick={() => handleCardClick("Open Issues")}
+          >
+            <div className="card-title">Open Issues</div>
           </div>
           <div 
-            className={`card ${flashCard === "Diesel" ? 'flash' : ''}`}
-            onClick={() => handleCardClick("Diesel")}
+            className={`card ${flashCard === "Closed Issues" ? 'flash' : ''}`}
+            onClick={() => handleCardClick("Closed Issues")}
           >
-            <div className="card-title">Diesel</div>
-          </div>
-          <div 
-            className={`card ${flashCard === "Issues" ? 'flash' : ''}`}
-            onClick={() => handleCardClick("Issues")}
-          >
-            <div className="card-title">Issues</div>
-          </div>
-          <div 
-            className={`card ${flashCard === "Orders" ? 'flash' : ''}`}
-            onClick={() => handleCardClick("Orders")}
-          >
-            <div className="card-title">Orders</div>
+            <div className="card-title">Closed Issues</div>
           </div>
         </main>
       </div>
@@ -103,4 +97,5 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+
+export default Maintenance;
