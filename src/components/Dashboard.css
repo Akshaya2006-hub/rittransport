@@ -1,0 +1,244 @@
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: white;
+}
+
+/* Header Section - Now left-aligned */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: white;
+  width: 100%;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 80px;
+  width: auto;
+}
+
+.title {
+  font-size: 2rem;
+  color: #1a237e;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.motto {
+  font-style: italic;
+  font-size: 12px;
+  color: #555;
+  display: block;
+  margin-top: 5px;
+}
+
+/* Main Content Layout - Modified for full-height sidebar */
+.content-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+/* Sidebar Styles - Now full height with interactive styles */
+.sidebar {
+  width: 256px;
+  background-color: #000080;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.menu-item {
+  padding: 20px;
+  font-size: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dashboard Content Styles */
+.dashboard-content {
+  flex: 1;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-gap: 30px;
+  overflow-y: auto;
+}
+
+/* Interactive card styles */
+.card {
+  height: 200px;
+  background-color: #000080;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.card.selected {
+  background-color: #1a237e;
+  border: 2px solid #fff;
+}
+
+.card.selected::after {
+  content: "✓";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.card-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card-value {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.denominator {
+  font-size: 20px;
+}
+
+/* Responsive Support */
+@media (max-width: 768px) {
+  .header {
+    padding: 20px;
+  }
+
+  .title {
+    margin-left: 15px;
+    font-size: 1.5rem;
+  }
+
+  .dashboard-content {
+    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-gap: 20px;
+  }
+  
+  .sidebar {
+    width: 200px;
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+  
+  .title {
+    margin-left: 0;
+    margin-top: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .content-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    order: 2;
+  }
+  
+  .dashboard-content {
+    order: 3;
+  }
+}
+/* Interactive menu styles */
+.menu-item {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Interactive card styles */
+.card {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* Flash effect animation */
+@keyframes flashAnimation {
+  0% {
+    background-color: #000080;
+  }
+  50% {
+    background-color: #3f51b5;
+  }
+  100% {
+    background-color: #000080;
+  }
+}
+
+.card.flash {
+  animation: flashAnimation 0.3s ease;
+}
