@@ -107,13 +107,13 @@ html, body {
 }
 
 /* Table styles */
-.table-container {
+.vehicle-table-container {
   background-color: white;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.table-header {
+.vehicle-table-header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   background-color: #e5e7eb;
@@ -123,25 +123,25 @@ html, body {
   border-top-right-radius: 4px;
 }
 
-.table-row {
+.vehicle-table-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border-bottom: 1px solid #e5e7eb;
   align-items: center;
 }
 
-.table-cell {
+.vehicle-table-cell {
   padding: 15px;
   text-align: center;
   font-size: 16px;
 }
 
-.details-cell {
+.vehicle-details-cell {
   display: flex;
   justify-content: center;
 }
 
-.details-icon {
+.vehicle-details-icon {
   color: #f97316;
   cursor: pointer;
 }

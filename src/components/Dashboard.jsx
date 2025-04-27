@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Dashboard.css';
+import './css pages/Dashboard.css';
 import ritLogo from './assets/rit-logo-new.png'; 
 
 function Dashboard() {

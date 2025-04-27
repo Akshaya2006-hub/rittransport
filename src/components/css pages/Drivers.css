@@ -1,0 +1,153 @@
+/* DriversManagement.css */
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  /* Sidebar Styles */
+  .sidebar {
+    width: 256px;
+  background-color: #000080;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  }
+  
+  .logo-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 80px;
+    width: auto;
+  }
+  
+  .title {
+    font-size: 2rem;
+    color: #1a237e;
+    margin-left: 20px;
+    font-weight: bold;
+  }
+  
+  
+  .menu-container {
+    color: white;
+  }
+  
+  .menu-item {
+    padding: 20px;
+  font-size: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  }
+  
+  .menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .menu-item.active {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .menu-arrow {
+    font-size: 12px;
+  }
+  
+  /* Main Content Styles */
+  .main-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .header h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #0a0a5e;
+  }
+  
+  .content-area {
+    display: flex;
+  }
+  
+  /* Table Styles */
+  .drivers-table {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 16px;
+  }
+  
+  .table-header {
+    background-color: #e5e7eb;
+    display: flex;
+    padding: 12px 0;
+    font-weight: 500;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table-row {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .name-column, .name-cell {
+    width: 50%;
+    padding: 12px;
+    padding-left: 16px;
+    border-right: 1px solid #ddd;
+  }
+  
+  .phone-column, .phone-cell {
+    width: 50%;
+    padding: 12px;
+    padding-left: 16px;
+  }
+  
+  /* Controls Styles */
+  .controls {
+    width: 130px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .search-input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    width: 100%;
+  }
+  
+  .action-button {
+    width: 100%;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 0;
+    margin-bottom: 8px;
+    cursor: pointer;
+    background-color: #0a0a5e; /* Default background */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease; /* Smooth transitions */
+  }
+  
+  .action-button:hover {
+    background-color: #1a237e; /* Slightly lighter shade */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Enhance shadow on hover */
+  }
+  
+  .action-button:active {
+    background-color: #ffffff; /* Flash effect: very light color */
+    color: #0a0a5e; /* Text contrast during the flash */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shrink shadow for pressed effect */
+    transform: scale(0.98); /* Slight shrinking effect */
+  }
+  
+  

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './BusDetails.css';
+import './css pages/BusDetails.css';
 import ritLogo from './assets/rit-logo-new.png'; 
 
 const BusDetails = () => {

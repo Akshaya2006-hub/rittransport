@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './login_page.css';
+import './css pages/login_page.css';
 import ritLogo from './assets/rit-logo-new.png'; // Ensure this path is correct
 
 function LoginPage() {
@@ -24,11 +24,11 @@ function LoginPage() {
   return (
     <div className="login-container">
       <div className="content-wrapper">
-        <div className="header">
-          <div className="logo-section">
+        <div className="login-header">
+          <div className="login-logo-section">
             <img src={ritLogo} alt="RIT Logo" className="logo" />
           </div>
-          <h1 className="title">Transport Maintenance</h1>
+          <h1 className="login-title">Transport Maintenance</h1>
         </div>
 
         <form onSubmit={handleLogin} className="login-form">

@@ -1,7 +1,7 @@
 // VehicleManagement.jsx
 import React, { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
-import './vehicles.css';
+import './css pages/vehicles.css';
 import ritLogo from './assets/rit-logo-new.png'; 
 
 const Vehicles = () => {
@@ -69,19 +69,19 @@ const Vehicles = () => {
           </div>
 
           {/* Vehicle Table */}
-          <div className="table-container">
-            <div className="table-header">
-              <div className="table-cell">Bus No.</div>
-              <div className="table-cell">Route Name</div>
-              <div className="table-cell">Details</div>
+          <div className="vehicle-table-container">
+            <div className="vehicle-table-header">
+              <div className="vehicle-table-cell">Bus No.</div>
+              <div className="vehicle-table-cell">Route Name</div>
+              <div className="vehicle-table-cell">Details</div>
             </div>
 
             {vehicles.map((vehicle, index) => (
-              <div key={index} className="table-row">
-                <div className="table-cell">{vehicle.busNo}</div>
-                <div className="table-cell">{vehicle.routeName}</div>
-                <div className="table-cell details-cell">
-                  <ChevronRight size={18} className="details-icon" />
+              <div key={index} className="vehicle-table-row">
+                <div className="vehicle-table-cell">{vehicle.busNo}</div>
+                <div className="vehicle-table-cell">{vehicle.routeName}</div>
+                <div className="vehicle-table-cell details-cell">
+                  <ChevronRight size={18} className="vehicle-details-icon" />
                 </div>
               </div>
             ))}

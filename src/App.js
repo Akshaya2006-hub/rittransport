@@ -8,6 +8,7 @@ import { HashRouter as Router ,Routes,Route } from 'react-router-dom';
 // Adjust the path if needed
 import './App.css'; // Optional: your global styles
 import Vehicles from './components/vehicles';
+import Drivers from './components/Drivers';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/Maintenance" element={<Maintenance/>}/>
         <Route path="/BusDetails" element={<BusDetails/>}/>
         <Route path="/vehicles" element={<Vehicles/>}/>
+        <Route path="/Drivers" element={<Drivers/>}/>
         
 
       </Routes>
