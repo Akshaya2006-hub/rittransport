@@ -183,6 +183,8 @@ html, body {
     align-items: flex-start;
     padding: 15px;
   }
+  
+
 
   .title {
     margin-left: 0;
@@ -244,4 +246,53 @@ html, body {
 
 .card.flash {
   animation: flashAnimation 0.3s ease;
+}
+/* Add this to your Dashboard.css file */
+
+.logout-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: auto;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Update the header to include space for the logout button */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}/* Add this to your Dashboard.css file */
+
+.logout-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: auto;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Update the header to include space for the logout button */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

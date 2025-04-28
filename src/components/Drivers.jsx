@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './css pages/Drivers.css';
 import ritLogo from './assets/rit-logo-new.png';
+import { useNavigate } from 'react-router-dom';
 
 function Drivers() {
   const [activePage, setActivePage] = useState('drivers');
-  const [activeMenu, setActiveMenu] = useState('Drivers'); // Define activeMenu state
+  const [activeMenu, setActiveMenu] = useState('Drivers');
   const [drivers, setDrivers] = useState([
     { name: 'Ram', phone: '9685452789' },
     { name: 'Vignesh', phone: '9685452789' },
@@ -14,13 +15,30 @@ function Drivers() {
     { name: 'Ravi', phone: '9685452789' },
   ]);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   const handleNavigation = (page) => {
     setActivePage(page);
   };
 
-  const handleMenuClick = (menu) => { // Define handleMenuClick function
+  const handleMenuClick = (menu) => {
     setActiveMenu(menu);
+    switch (menu) {
+      case 'Dashboard':
+        navigate('/Dashboard');
+        break;
+      case 'Vehicles':
+        navigate('/vehicles');
+        break;
+      case 'Maintenance':
+        navigate('/Maintenance');
+        break;
+      case 'Drivers':
+        navigate('/Drivers');
+        break;
+      default:
+        break;
+    }
   };
 
   const handleAdd = () => {
@@ -73,7 +91,7 @@ function Drivers() {
         </nav>
 
         <div className="main-content">
-          
+
 
           <div className="content-area">
             <div className="drivers-table">

@@ -2,11 +2,13 @@
 import React, { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import './css pages/vehicles.css';
-import ritLogo from './assets/rit-logo-new.png'; 
+import ritLogo from './assets/rit-logo-new.png';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Vehicles = () => {
   // State for active sidebar item
   const [activeMenu, setActiveMenu] = useState('Vehicles');
+  const navigate = useNavigate(); // Initialize navigate
 
   // Data for the vehicle table
   const vehicles = [
@@ -19,6 +21,22 @@ const Vehicles = () => {
   // Handle menu item click
   const handleMenuClick = (menuItem) => {
     setActiveMenu(menuItem);
+    switch (menuItem) {
+      case 'Dashboard':
+        navigate('/Dashboard');
+        break;
+      case 'Vehicles':
+        navigate('/vehicles');
+        break;
+      case 'Maintenance':
+        navigate('/Maintenance');
+        break;
+      case 'Drivers':
+        navigate('/Drivers');
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -30,37 +48,37 @@ const Vehicles = () => {
         </div>
         <h1 className="title">VEHICLES</h1>
       </header>
-      
+
       {/* Content container with sidebar and dashboard */}
       <div className="content-container">
         {/* Sidebar */}
         <nav className="sidebar">
-          <div 
+          <div
             className={`menu-item ${activeMenu === 'Dashboard' ? 'active' : ''}`}
             onClick={() => handleMenuClick('Dashboard')}
           >
             Dashboard {activeMenu === 'Dashboard' && '▸'}
           </div>
-          <div 
+          <div
             className={`menu-item ${activeMenu === 'Vehicles' ? 'active' : ''}`}
             onClick={() => handleMenuClick('Vehicles')}
           >
             Vehicles {activeMenu === 'Vehicles' && '▸'}
           </div>
-          <div 
+          <div
             className={`menu-item ${activeMenu === 'Maintenance' ? 'active' : ''}`}
             onClick={() => handleMenuClick('Maintenance')}
           >
             Maintenance {activeMenu === 'Maintenance' && '▸'}
           </div>
-          <div 
+          <div
             className={`menu-item ${activeMenu === 'Drivers' ? 'active' : ''}`}
             onClick={() => handleMenuClick('Drivers')}
           >
             Drivers {activeMenu === 'Drivers' && '▸'}
           </div>
         </nav>
-      
+
         {/* Main content */}
         <div className="main-content">
           {/* Search Bar */}
