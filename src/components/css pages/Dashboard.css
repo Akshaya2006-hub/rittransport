@@ -247,22 +247,6 @@ html, body {
 .card.flash {
   animation: flashAnimation 0.3s ease;
 }
-/* Add this to your Dashboard.css file */
-
-.logout-btn {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: auto;
-  font-weight: bold;
-}
-
-.logout-btn:hover {
-  background-color: #d32f2f;
-}
 
 /* Update the header to include space for the logout button */
 .header {
@@ -274,18 +258,18 @@ html, body {
 }/* Add this to your Dashboard.css file */
 
 .logout-btn {
-  background-color: #f44336;
-  color: white;
+  background-color: white;
+  color: #f44336;
   border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
+  padding: 5px 10px;
+  border-radius: 2px;
   cursor: pointer;
   margin-left: auto;
   font-weight: bold;
 }
 
 .logout-btn:hover {
-  background-color: #d32f2f;
+  background-color: #ece5e5;
 }
 
 /* Update the header to include space for the logout button */

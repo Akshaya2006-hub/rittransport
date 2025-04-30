@@ -50,6 +50,7 @@ function Dashboard() {
           <img src={ritLogo} alt="RIT Logo" className="logo" />
         </div>
         <h1 className="title">WELCOME</h1>
+        <h2 className= "logout-btn">Log out</h2>
       </header>
 
       {/* Content container with sidebar and dashboard */}
