@@ -1,24 +1,46 @@
 import React, { useState } from 'react';
 import './css pages/login_page.css';
-import ritLogo from './assets/rit-logo-new.png'; // Ensure this path is correct
+import ritLogo from './assets/rit-logo-new.png';
+import { auth } from './firebase-config';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+
     if (!userId || !password) {
-      alert('Please enter both User ID and Password.');
+      setError('Please enter both User ID and Password.');
       return;
     }
-    // Handle login logic here
-    console.log('Login attempt with:', { userId, password });
+
+    try {
+      setError('');
+      setLoading(true);
+
+      // Firebase authentication
+      const userCredential = await signInWithEmailAndPassword(auth, userId, password);
+      const user = userCredential.user;
+
+      console.log('User logged in successfully:', user);
+      navigate('/dashboard');
+
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('Access Denied');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleForgotPassword = () => {
-    // Handle forgot password logic here
-    console.log('Forgot password clicked');
+    alert('Please contact your system administrator to reset your password.');
   };
 
   return (
@@ -31,6 +53,8 @@ function LoginPage() {
           <h1 className="login-title">Transport Maintenance</h1>
         </div>
 
+        {error && <div className="error-message">{error}</div>}
+
         <form onSubmit={handleLogin} className="login-form">
           <div className="form-group">
             <label htmlFor="userId" className="sr-only">User ID</label>
@@ -42,6 +66,7 @@ function LoginPage() {
               onChange={(e) => setUserId(e.target.value)}
               placeholder="USER ID"
               className="input-field"
+              disabled={loading}
             />
           </div>
 
@@ -55,6 +80,7 @@ function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="PASSWORD"
               className="input-field"
+              disabled={loading}
             />
           </div>
 
@@ -63,14 +89,16 @@ function LoginPage() {
               type="button"
               onClick={handleForgotPassword}
               className="forgot-btn"
+              disabled={loading}
             >
               Forget password
             </button>
             <button
               type="submit"
               className="login-btn"
+              disabled={loading}
             >
-              Login
+              {loading ? 'Logging in...' : 'Login'}
             </button>
           </div>
         </form>
