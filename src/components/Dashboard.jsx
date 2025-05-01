@@ -67,7 +67,6 @@ function Dashboard() {
           <img src={ritLogo} alt="RIT Logo" className="logo" />
         </div>
         <h1 className="title">WELCOME</h1>
-        <button className="logout-btn" onClick={handleLogout}>Log out</button>
       </header>
 
       {/* Content container with sidebar and dashboard */}
@@ -98,6 +97,8 @@ function Dashboard() {
           >
             Drivers {activeMenu === 'Drivers' && '▸'}
           </div>
+          {/* Logout button moved to the bottom of the sidebar */}
+          <button className="logout-btn sidebar-logout-btn" onClick={handleLogout}>Log out</button>
         </nav>
 
         {/* Dashboard content */}
