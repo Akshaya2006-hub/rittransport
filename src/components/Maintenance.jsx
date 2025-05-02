@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './css pages/Dashboard.css'; // You might want a separate CSS for Maintenance
 import ritLogo from './assets/rit-logo-new.png';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-
+import { signOut } from 'firebase/auth';
+import { auth } from './firebase-config'; // Import auth
 function Maintenance() {
   const [activeMenu, setActiveMenu] = useState('Maintenance');
   const [flashCard, setFlashCard] = useState(null);
@@ -40,7 +41,19 @@ function Maintenance() {
       setFlashCard(null);
     }, 300); // Match this to your CSS animation duration
   };
-
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        console.log('User signed out.');
+        navigate('/'); // Redirect to the login page after logout
+      })
+      .catch((error) => {
+        // An error happened.
+        console.error('Error signing out:', error);
+        //  Consider showing an error message to the user here.
+      });
+  };
   return (
     <div className="app-container">
       {/* Header with left-aligned logo and title */}
@@ -79,6 +92,7 @@ function Maintenance() {
           >
             Drivers {activeMenu === 'Drivers' && '▸'}
           </div>
+          <button className="logout-btn sidebar-logout-btn" onClick={handleLogout}>Log out</button>
         </nav>
 
         <main className="dashboard-content"> {/* Consider renaming this class */}

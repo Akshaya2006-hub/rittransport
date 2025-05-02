@@ -9,7 +9,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'; // Optional: your global styles
 import Vehicles from './components/vehicles';
 import Drivers from './components/Drivers';
-//import Navbar from './components/Navbar';
+import TodaysTasksPage from './components/cards/TodaysTasksPage';
+import TotalVehiclesPage from './components/cards/TotalVehiclesPage';
+import DieselPage from './components/cards/DieselPage';
+import IssuesPage from './components/cards/IssuesPage';
+import OrdersPage from './components/cards/OrdersPage'; // Assuming path to your page component
 
 function App() {
   return (
@@ -21,6 +25,12 @@ function App() {
         <Route path="/bus-details/:busNo" element={<BusDetails />} /> {/* Updated route */}
         <Route path="/vehicles" element={<Vehicles />} />
         <Route path="/Drivers" element={<Drivers />} />
+        {/* Add the routes for your card-specific pages here */}
+        <Route path="/today-tasks" element={<TodaysTasksPage />} />
+        <Route path="/vehicles-list" element={<TotalVehiclesPage />} />
+        <Route path="/diesel-info" element={<DieselPage />} />
+        <Route path="/vehicle-issues" element={<IssuesPage />} />
+        <Route path="/orders-list" element={<OrdersPage />} />
       </Routes>
     </Router>
   );

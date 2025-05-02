@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import './css pages/BusDetails.css';
 import ritLogo from './assets/rit-logo-new.png';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-
+import { signOut } from 'firebase/auth';
+import { auth } from './firebase-config'; // Import auth
 const BusDetails = () => {
   const { busNo } = useParams();
   const [expandedSection, setExpandedSection] = useState(null);
@@ -72,6 +73,19 @@ const BusDetails = () => {
         break;
     }
   };
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        console.log('User signed out.');
+        navigate('/'); // Redirect to the login page after logout
+      })
+      .catch((error) => {
+        // An error happened.
+        console.error('Error signing out:', error);
+        //  Consider showing an error message to the user here.
+      });
+  };
 
   return (
     <div className="app-container">
@@ -106,8 +120,10 @@ const BusDetails = () => {
             className={`menu-item ${activeMenu === 'Drivers' ? 'active' : ''}`}
             onClick={() => handleMenuClick('Drivers')}
           >
+            
             Drivers {activeMenu === 'Drivers' && '▸'}
           </div>
+          <button className="logout-btn sidebar-logout-btn" onClick={handleLogout}>Log out</button>
         </nav>
 
         <div className="main-content">

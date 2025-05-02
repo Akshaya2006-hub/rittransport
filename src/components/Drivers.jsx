@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './css pages/Drivers.css';
 import ritLogo from './assets/rit-logo-new.png';
 import { useNavigate } from 'react-router-dom';
-
+import { signOut } from 'firebase/auth';
+import { auth } from './firebase-config'; // Import auth
 function Drivers() {
   const [activePage, setActivePage] = useState('drivers');
   const [activeMenu, setActiveMenu] = useState('Drivers');
@@ -52,6 +53,19 @@ function Drivers() {
   const handleModify = () => {
     console.log("Modify driver clicked");
   };
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        console.log('User signed out.');
+        navigate('/'); // Redirect to the login page after logout
+      })
+      .catch((error) => {
+        // An error happened.
+        console.error('Error signing out:', error);
+        //  Consider showing an error message to the user here.
+      });
+  };
 
   return (
     <div className="app-container">
@@ -88,6 +102,7 @@ function Drivers() {
           >
             Drivers {activeMenu === 'Drivers' && '▸'}
           </div>
+          <button className="logout-btn sidebar-logout-btn" onClick={handleLogout}>Log out</button>
         </nav>
 
         <div className="main-content">

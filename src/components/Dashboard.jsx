@@ -20,13 +20,13 @@ function Dashboard() {
         navigate('/vehicles');
         break;
       case 'Dashboard':
-        navigate('/Dashboard');
+        navigate('/dashboard');
         break;
       case 'Maintenance':
-        navigate('/Maintenance'); // Navigation for Maintenance
+        navigate('/maintenance'); // Navigation for Maintenance
         break;
       case 'Drivers':
-        navigate('/Drivers');
+        navigate('/drivers');
         break;
       // Add other cases as needed
       default:
@@ -34,10 +34,33 @@ function Dashboard() {
     }
   };
 
-  // Handle card click with flash effect
+  // Handle card click with flash effect and navigation
   const handleCardClick = (cardTitle) => {
     setFlashCard(cardTitle);
     console.log(`Card clicked: ${cardTitle}`);
+
+    let route;
+    switch (cardTitle) {
+      case "Today's Task":
+        route = '/cards/today-tasks';
+        break;
+      case "Total Vehicle":
+        route = '/vehicles-list';
+        break;
+      case "Diesel":
+        route = '/diesel-info';
+        break;
+      case "Issues":
+        route = '/vehicle-issues';
+        break;
+      case "Orders":
+        route = '/orders-list';
+        break;
+      default:
+        route = '/dashboard'; // Fallback
+        break;
+    }
+    navigate(route);
 
     // Reset flash after animation completes
     setTimeout(() => {

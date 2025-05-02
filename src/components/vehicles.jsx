@@ -4,7 +4,8 @@ import { ChevronRight } from 'lucide-react';
 import './css pages/vehicles.css';
 import ritLogo from './assets/rit-logo-new.png';
 import { useNavigate, Link } from 'react-router-dom';
-
+import { signOut } from 'firebase/auth';
+import { auth } from './firebase-config'; // Import auth
 const Vehicles = () => {
   const [activeMenu, setActiveMenu] = useState('Vehicles');
   const navigate = useNavigate();
@@ -52,7 +53,19 @@ const Vehicles = () => {
   const detailsIconStyle = {
     color: 'orange',
   };
-
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        console.log('User signed out.');
+        navigate('/'); // Redirect to the login page after logout
+      })
+      .catch((error) => {
+        // An error happened.
+        console.error('Error signing out:', error);
+        //  Consider showing an error message to the user here.
+      });
+  };
   return (
     <div className="app-container">
       <header className="header">
@@ -88,7 +101,7 @@ const Vehicles = () => {
           >
             Drivers {activeMenu === 'Drivers' && '▸'}
           </div>
-          
+          <button className="logout-btn sidebar-logout-btn" onClick={handleLogout}>Log out</button>
         </nav>
 
         <div className="main-content">

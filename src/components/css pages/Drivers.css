@@ -149,5 +149,30 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shrink shadow for pressed effect */
     transform: scale(0.98); /* Slight shrinking effect */
   }
+  .sidebar-logout-btn {
+    display: block; /* Make it take full width of the sidebar */
+    width: 100%;
+    padding: 10px 15px;
+    text-align: left; /* Align text to the left like other menu items */
+    background-color: #11285e; /* Example background color */
+    color: #efe3e3;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+  }
+  .sidebar-logout-btn:hover {
+    background-color: #c1934f;
+  }
   
   
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .sidebar-logout-btn {
+    margin-top: auto; /* Push it to the bottom */
+    border-top: 1px solid #ccc; /* Optional separator */
+  }
