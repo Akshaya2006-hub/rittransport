@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
-import './css pages/Dashboard.css'; // You might want a separate CSS for Maintenance
+import './css pages/Dashboard.css'; // Keep your original CSS import
 import ritLogo from './assets/rit-logo-new.png';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
-import { auth } from './firebase-config'; // Import auth
+import { auth } from './firebase-config';
+
+// Mapping between display titles and navigation routes
+const CATEGORY_NAVIGATION = {
+  "To be service": "/components/to-be-serviced",  // Changed to absolute path
+  "Out for Service": "/components/out-for-service", 
+  "Open Issues": "/components/open-issues",
+  "Closed Issues": "/components/closed-issues"
+};
 function Maintenance() {
   const [activeMenu, setActiveMenu] = useState('Maintenance');
   const [flashCard, setFlashCard] = useState(null);
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   // Handle menu item click
   const handleMenuClick = (menuItem) => {
@@ -31,29 +39,31 @@ function Maintenance() {
     }
   };
 
-  // Handle card click with flash effect
+  // Handle card click with flash effect and navigation
   const handleCardClick = (cardTitle) => {
+    const navigationRoute = CATEGORY_NAVIGATION[cardTitle];
+    
     setFlashCard(cardTitle);
     console.log(`Card clicked: ${cardTitle}`);
-
-    // Reset flash after animation completes
+    
+    // Navigate to the specific task page after flash animation
     setTimeout(() => {
       setFlashCard(null);
+      navigate(navigationRoute);
     }, 300); // Match this to your CSS animation duration
   };
+
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
         console.log('User signed out.');
-        navigate('/'); // Redirect to the login page after logout
+        navigate('/'); // Redirect to login page
       })
       .catch((error) => {
-        // An error happened.
         console.error('Error signing out:', error);
-        //  Consider showing an error message to the user here.
       });
   };
+
   return (
     <div className="app-container">
       {/* Header with left-aligned logo and title */}
@@ -95,7 +105,7 @@ function Maintenance() {
           <button className="logout-btn sidebar-logout-btn" onClick={handleLogout}>Log out</button>
         </nav>
 
-        <main className="dashboard-content"> {/* Consider renaming this class */}
+        <main className="dashboard-content">
           <div
             className={`card ${flashCard === "To be service" ? 'flash' : ''}`}
             onClick={() => handleCardClick("To be service")}

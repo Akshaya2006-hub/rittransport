@@ -32,9 +32,17 @@ const BusDetails = () => {
       await new Promise(resolve => setTimeout(resolve, 500));
       const busData = {
         'R12': 'MINJUR',
-        'R21': 'MKB NAGAR',
-        'R18': 'PALLIKARANAI',
-        'T05': 'THACHOOR',
+    'R21': 'MKB NAGAR',
+    'R18': 'PALLIKARANAI',
+    'T05': 'THACHOOR',
+    'R01': 'COLLECTOR NAGAR',
+    'R11': 'ENNORE',
+    'R13': 'TRIPLECANE',
+    'R22': 'CIT NAGAR',
+    'R23': 'ARAKKONAM',
+    'R24': 'THIRUTANI',
+    'R14': 'GUINDY',
+    'R15': 'PUDUR'
         // Add more bus mappings as needed
       };
       if (busData[busNo]) {
