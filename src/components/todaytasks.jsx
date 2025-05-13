@@ -1,0 +1,364 @@
+import React, { useState } from 'react';
+import { Wrench, Filter, SortAsc, ArrowLeft, CheckCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
+// Sample task data for Today's Tasks
+const initialTasks = [
+  { 
+    id: 1, 
+    vehicle: 'R12 - MINJUR', 
+    title: 'Oil Change', 
+    description: 'Routine oil change and filter replacement',
+    status: 'Pending',
+    assignedTo: 'Rajesh'
+  },
+  { 
+    id: 2, 
+    vehicle: 'R21 - MKB NAGAR', 
+    title: 'Brake Pad Replacement', 
+    description: 'Replace worn out brake pads',
+    status: 'In Progress',
+    assignedTo: 'Suresh'
+  },
+  { 
+    id: 3, 
+    vehicle: 'R05 - THACHOOR', 
+    title: 'AC Repair', 
+    description: 'Fix air conditioning system and recharge refrigerant',
+    status: 'Pending',
+    assignedTo: 'Ramesh'
+  },
+  { 
+    id: 4, 
+    vehicle: 'R11 - ENNORE', 
+    title: 'Transmission Fluid Change', 
+    description: 'Replace transmission fluid and inspect for leaks',
+    status: 'Completed',
+    assignedTo: 'Ganesh'
+  },
+  { 
+    id: 5, 
+    vehicle: 'R13 - TRIPLECANE', 
+    title: 'Engine Belt Replacement', 
+    description: 'Replace worn timing and serpentine belts',
+    status: 'In Progress',
+    assignedTo: 'Mahesh'
+  },
+  { 
+    id: 6, 
+    vehicle: 'R24 - THIRUTANI', 
+    title: 'Headlight Replacement', 
+    description: 'Replace non-functional headlight assembly',
+    status: 'Pending',
+    assignedTo: 'Dinesh'
+  },
+  { 
+    id: 7, 
+    vehicle: 'R14 - GUINDY', 
+    title: 'Battery Replacement', 
+    description: 'Replace failing battery with new unit',
+    status: 'Pending',
+    assignedTo: 'Venkat'
+  }
+];
+
+function TodayTasks() {
+  const [tasks, setTasks] = useState(initialTasks);
+  const [filter, setFilter] = useState('All');
+  const navigate = useNavigate();
+
+  // Filter tasks based on status
+  const filteredTasks = tasks.filter(task => 
+    filter === 'All' || task.status === filter
+  );
+
+  const handleBack = () => {
+    navigate('/dashboard');
+  };
+
+  const handleCompleteTask = (id) => {
+    setTasks(tasks.map(task => 
+      task.id === id 
+        ? { ...task, status: 'Completed' } 
+        : task
+    ));
+  };
+
+  return (
+    <div className="task-page-container">
+      <div className="task-header">
+        <button 
+          onClick={handleBack} 
+          className="back-button"
+        >
+          <ArrowLeft size={20} />
+          Back to Dashboard
+        </button>
+        <h1 className="task-title">
+          <Wrench className="task-icon" />
+          Today's Maintenance Tasks
+        </h1>
+      </div>
+
+      {/* Filters */}
+      <div className="filters-section">
+        <div className="filter-controls">
+          <div className="filter-group">
+            <Filter size={18} />
+            <select 
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              className="filter-select"
+            >
+              <option value="All">All Tasks</option>
+              <option value="Pending">Pending</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+        </div>
+        <div className="task-summary">
+          <span className="task-count">
+            {tasks.filter(task => task.status === 'Completed').length}/{tasks.length} Tasks Completed
+          </span>
+        </div>
+      </div>
+
+      {/* Tasks List */}
+      {filteredTasks.length === 0 ? (
+        <div className="no-tasks-message">
+          No tasks found matching the selected filter
+        </div>
+      ) : (
+        <div className="tasks-list">
+          {filteredTasks.map(task => (
+            <div 
+              key={task.id} 
+              className={`task-card ${task.status === 'Completed' ? 'task-completed' : ''}`}
+            >
+              <div className="task-card-content">
+                <div className="task-card-info">
+                  <h3 className="task-card-title">
+                    {task.title} - {task.vehicle}
+                  </h3>
+                  <p className="task-card-description">{task.description}</p>
+                  <p className="task-assigned-to">Assigned to: {task.assignedTo}</p>
+                </div>
+                <div className="task-card-actions">
+                  <span 
+                    className={`status-badge ${
+                      task.status === 'Completed' ? 'status-completed' : 
+                      task.status === 'In Progress' ? 'status-progress' : 
+                      'status-pending'
+                    }`}
+                  >
+                    {task.status}
+                  </span>
+                  {task.status !== 'Completed' && (
+                    <button 
+                      onClick={() => handleCompleteTask(task.id)} 
+                      className="complete-button"
+                    >
+                      <CheckCircle size={16} />
+                      Mark Complete
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <style jsx>{`
+        .task-page-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 24px;
+        }
+        
+        .task-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 24px;
+        }
+        
+        .back-button {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: #3b82f6;
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-weight: 500;
+          transition: color 0.2s;
+        }
+        
+        .back-button:hover {
+          color: #1d4ed8;
+        }
+        
+        .task-title {
+          display: flex;
+          align-items: center;
+          font-size: 24px;
+          font-weight: 700;
+        }
+        
+        .task-icon {
+          margin-right: 12px;
+          color: #3b82f6;
+        }
+        
+        .filters-section {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 24px;
+        }
+        
+        .filter-controls {
+          display: flex;
+          gap: 16px;
+        }
+        
+        .filter-group {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        
+        .filter-select {
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          background-color: white;
+        }
+        
+        .task-summary {
+          font-weight: 600;
+          color: #4b5563;
+        }
+        
+        .task-count {
+          background-color: #dbeafe;
+          color: #1e40af;
+          padding: 4px 10px;
+          border-radius: 9999px;
+          font-size: 14px;
+        }
+        
+        .no-tasks-message {
+          text-align: center;
+          color: #6b7280;
+          padding: 40px 0;
+        }
+        
+        .tasks-list {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        
+        .task-card {
+          background-color: white;
+          border: 1px solid #e5e7eb;
+          border-radius: 8px;
+          padding: 16px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+          transition: box-shadow 0.2s;
+        }
+        
+        .task-card:hover {
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .task-completed {
+          background-color: #f9fafb;
+          border-left: 4px solid #10b981;
+        }
+        
+        .task-card-content {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        
+        .task-card-info {
+          flex: 1;
+        }
+        
+        .task-card-title {
+          font-weight: 600;
+          color: #111827;
+          margin-bottom: 4px;
+        }
+        
+        .task-card-description {
+          font-size: 14px;
+          color: #6b7280;
+          margin-bottom: 4px;
+        }
+        
+        .task-assigned-to {
+          font-size: 14px;
+          color: #4b5563;
+          font-style: italic;
+        }
+        
+        .task-card-actions {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 8px;
+        }
+        
+        .status-badge {
+          padding: 4px 8px;
+          border-radius: 9999px;
+          font-size: 12px;
+          font-weight: 500;
+          display: inline-block;
+        }
+        
+        .status-completed {
+          background-color: #d1fae5;
+          color: #059669;
+        }
+        
+        .status-progress {
+          background-color: #e0f2fe;
+          color: #0369a1;
+        }
+        
+        .status-pending {
+          background-color: #fef3c7;
+          color: #d97706;
+        }
+        
+        .complete-button {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          border: none;
+          border-radius: 4px;
+          background-color: #10b981;
+          color: white;
+          font-size: 12px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+        
+        .complete-button:hover {
+          background-color: #059669;
+        }
+      `}</style>
+    </div>
+  );
+}
+
+export default TodayTasks;

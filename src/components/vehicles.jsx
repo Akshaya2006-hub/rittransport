@@ -25,7 +25,21 @@ const Vehicles = () => {
     { busNo: 'R23', routeName: 'ARAKKONAM' },
     { busNo: 'R24', routeName: 'THIRUTANI' },
     { busNo: 'R14', routeName: 'GUINDY' },
-    { busNo: 'R15', routeName: 'PUDUR' }, // Added a new bus for demonstration
+    { busNo: 'R15', routeName: 'PUDUR' },
+    { busNo: 'R16', routeName: 'KELAMBAKKAM' },
+    { busNo: 'R17', routeName: 'KOVILAMKKAM' },
+    { busNo: 'R20', routeName: 'ADAYAR' },
+    { busNo: 'R19', routeName: 'ICF' },
+    { busNo: 'R23', routeName: 'CHINMAYANAGAR' },
+    { busNo: 'R24', routeName: 'AVADI' },
+    { busNo: 'R20A', routeName: 'PAMMAL' },
+    { busNo: 'R19B', routeName: 'KANCHEEPURAM' },
+    { busNo: 'R25', routeName: 'ARCOT' },
+    { busNo: 'R26', routeName: 'KAKKALUR' },
+    { busNo: 'R27', routeName: 'VELACHERY' }, 
+    { busNo: 'R28', routeName: 'AGARAM' },
+    { busNo: 'R29', routeName: 'KALLIKUPPAM' },
+    { busNo: 'R29A', routeName: 'ANDARKUPPAM' },  // Added a new bus for demonstration
   ];
 
   // Initialize filteredVehicles with all vehicles on component mount

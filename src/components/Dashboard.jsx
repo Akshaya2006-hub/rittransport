@@ -5,6 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from './firebase-config'; // Import auth
 
+const CATEGORY_NAVIGATION = {
+  "Today's Task": "/components/todaytasks",
+  "Total Vehicle": "/components/VehiclesList",
+  "Diesel": "/components/DiselInfo",
+  "Orders": "/components/OrdersPage"
+};
 
 function Dashboard() {
   const [activeMenu, setActiveMenu] = useState('Dashboard');
@@ -39,28 +45,15 @@ function Dashboard() {
     setFlashCard(cardTitle);
     console.log(`Card clicked: ${cardTitle}`);
 
-    let route;
-    switch (cardTitle) {
-      case "Today's Task":
-        route = '/cards/today-tasks';
-        break;
-      case "Total Vehicle":
-        route = '/vehicles-list';
-        break;
-      case "Diesel":
-        route = '/diesel-info';
-        break;
-      case "Issues":
-        route = '/vehicle-issues';
-        break;
-      case "Orders":
-        route = '/orders-list';
-        break;
-      default:
-        route = '/dashboard'; // Fallback
-        break;
+    // Use the consistent navigation paths from CATEGORY_NAVIGATION
+    const route = CATEGORY_NAVIGATION[cardTitle];
+    if (route) {
+      navigate(route);
+    } else {
+      // Handle cases where navigation is not defined in CATEGORY_NAVIGATION
+      console.log(`No navigation defined for ${cardTitle}`);
+      // You might want to show a message to the user or handle this differently
     }
-    navigate(route);
 
     // Reset flash after animation completes
     setTimeout(() => {
@@ -146,12 +139,7 @@ function Dashboard() {
           >
             <div className="card-title">Diesel</div>
           </div>
-          <div
-            className={`card ${flashCard === "Issues" ? 'flash' : ''}`}
-            onClick={() => handleCardClick("Issues")}
-          >
-            <div className="card-title">Issues</div>
-          </div>
+          
           <div
             className={`card ${flashCard === "Orders" ? 'flash' : ''}`}
             onClick={() => handleCardClick("Orders")}
