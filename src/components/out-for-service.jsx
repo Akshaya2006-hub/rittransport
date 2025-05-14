@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const initialTasks = [
   { 
     id: 1, 
-    vehicle: 'RIT-005', 
+    vehicle: 'R17-THATANKUPPAM', 
     title: 'Transmission Repair', 
     description: 'Repair transmission fluid leak',
     priority: 'High',
@@ -16,7 +16,7 @@ const initialTasks = [
   },
   { 
     id: 2, 
-    vehicle: 'RIT-008', 
+    vehicle: 'R18-PALLIKARANAI', 
     title: 'Engine Overhaul', 
     description: 'Complete engine rebuild and optimization',
     priority: 'Medium',
@@ -26,7 +26,7 @@ const initialTasks = [
   },
   { 
     id: 3, 
-    vehicle: 'RIT-012', 
+    vehicle: 'R13-TRIPLICANE', 
     title: 'Electrical System Diagnosis', 
     description: 'Diagnosing intermittent electrical failures',
     priority: 'High',

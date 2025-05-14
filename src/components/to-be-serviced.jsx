@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const initialTasks = [
   { 
     id: 1, 
-    vehicle: 'RIT-001', 
+    vehicle: 'R22-CIT NAGAR', 
     title: 'Oil Change', 
     description: 'Routine oil change and filter replacement',
     priority: 'High',
@@ -14,7 +14,7 @@ const initialTasks = [
   },
   { 
     id: 2, 
-    vehicle: 'RIT-002', 
+    vehicle: 'R19B-KANCHEPURAM', 
     title: 'Tire Rotation', 
     description: 'Rotate and balance tires',
     priority: 'Medium',
@@ -22,7 +22,7 @@ const initialTasks = [
   },
   { 
     id: 3, 
-    vehicle: 'RIT-003', 
+    vehicle: 'R26-PAMMAL', 
     title: 'Brake Inspection', 
     description: 'Check brake pads and rotor condition',
     priority: 'High',

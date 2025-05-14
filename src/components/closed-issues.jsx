@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const initialIssues = [
   { 
     id: 1, 
-    vehicle: 'RIT-006', 
+    vehicle: 'R23-CHINMAYANAGAR', 
     title: 'Brake Noise', 
     description: 'Grinding noise when braking',
     severity: 'Critical',
@@ -17,7 +17,7 @@ const initialIssues = [
   },
   { 
     id: 2, 
-    vehicle: 'RIT-010', 
+    vehicle: 'R29A-KAKKALUR', 
     title: 'Faulty Backup Camera', 
     description: 'Backup camera shows static',
     severity: 'Moderate',
@@ -28,7 +28,7 @@ const initialIssues = [
   },
   { 
     id: 3, 
-    vehicle: 'RIT-008', 
+    vehicle: 'R28-KALLIKUPPAM', 
     title: 'Windshield Wiper Malfunction', 
     description: 'Wipers stopping mid-cycle',
     severity: 'Minor',
