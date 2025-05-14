@@ -38,7 +38,7 @@ const initialRefuelingList = [
     driver: 'Velu P',
     scheduledTime: '11:30 AM',
     estimatedLiters: 50,
-    status: 'Pending'
+    status: 'In Progress'
   },
   { 
     id: 5, 
@@ -47,7 +47,7 @@ const initialRefuelingList = [
     driver: 'Manoj T',
     scheduledTime: '01:45 PM',
     estimatedLiters: 60,
-    status: 'Pending'
+    status: 'In Progress'
   },
   { 
     id: 6, 
@@ -56,7 +56,7 @@ const initialRefuelingList = [
     driver: 'Arun Kumar',
     scheduledTime: '03:00 PM',
     estimatedLiters: 58,
-    status: 'Pending'
+    status: 'In Progress'
   }
 ];
 
@@ -188,14 +188,6 @@ function DieselInfo() {
                 </div>
               </div>
               <div className="card-actions">
-                {entry.status === 'Pending' && (
-                  <button 
-                    onClick={() => handleUpdateStatus(entry.id, 'In Progress')}
-                    className="action-button start-button"
-                  >
-                    Start Refueling
-                  </button>
-                )}
                 {entry.status === 'In Progress' && (
                   <button 
                     onClick={() => handleUpdateStatus(entry.id, 'Completed')}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Wrench, Filter, SortAsc, ArrowLeft, CheckCircle } from 'lucide-react';
+import { Wrench, Filter, SortAsc, ArrowLeft, CheckCircle, Calendar } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 // Sample task data for Today's Tasks
@@ -10,7 +10,8 @@ const initialTasks = [
     title: 'Oil Change', 
     description: 'Routine oil change and filter replacement',
     status: 'Pending',
-    assignedTo: 'Rajesh'
+    assignedTo: 'Rajesh',
+    date: '2025-05-14'
   },
   { 
     id: 2, 
@@ -18,7 +19,8 @@ const initialTasks = [
     title: 'Brake Pad Replacement', 
     description: 'Replace worn out brake pads',
     status: 'In Progress',
-    assignedTo: 'Suresh'
+    assignedTo: 'Suresh',
+    date: '2025-05-14'
   },
   { 
     id: 3, 
@@ -26,7 +28,8 @@ const initialTasks = [
     title: 'AC Repair', 
     description: 'Fix air conditioning system and recharge refrigerant',
     status: 'Pending',
-    assignedTo: 'Ramesh'
+    assignedTo: 'Ramesh',
+    date: '2025-05-15'
   },
   { 
     id: 4, 
@@ -34,7 +37,8 @@ const initialTasks = [
     title: 'Transmission Fluid Change', 
     description: 'Replace transmission fluid and inspect for leaks',
     status: 'Completed',
-    assignedTo: 'Ganesh'
+    assignedTo: 'Ganesh',
+    date: '2025-05-14'
   },
   { 
     id: 5, 
@@ -42,7 +46,8 @@ const initialTasks = [
     title: 'Engine Belt Replacement', 
     description: 'Replace worn timing and serpentine belts',
     status: 'In Progress',
-    assignedTo: 'Mahesh'
+    assignedTo: 'Mahesh',
+    date: '2025-05-15'
   },
   { 
     id: 6, 
@@ -50,7 +55,8 @@ const initialTasks = [
     title: 'Headlight Replacement', 
     description: 'Replace non-functional headlight assembly',
     status: 'Pending',
-    assignedTo: 'Dinesh'
+    assignedTo: 'Dinesh',
+    date: '2025-05-16'
   },
   { 
     id: 7, 
@@ -58,18 +64,21 @@ const initialTasks = [
     title: 'Battery Replacement', 
     description: 'Replace failing battery with new unit',
     status: 'Pending',
-    assignedTo: 'Venkat'
+    assignedTo: 'Venkat',
+    date: '2025-05-14'
   }
 ];
 
 function TodayTasks() {
   const [tasks, setTasks] = useState(initialTasks);
   const [filter, setFilter] = useState('All');
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // Today's date in YYYY-MM-DD format
   const navigate = useNavigate();
 
-  // Filter tasks based on status
+  // Filter tasks based on status and selected date
   const filteredTasks = tasks.filter(task => 
-    filter === 'All' || task.status === filter
+    (filter === 'All' || task.status === filter) && 
+    (task.date === selectedDate)
   );
 
   const handleBack = () => {
@@ -84,6 +93,12 @@ function TodayTasks() {
     ));
   };
 
+  // Format date for display
+  const formatDateForDisplay = (dateString) => {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
+  };
+
   return (
     <div className="task-page-container">
       <div className="task-header">
@@ -96,8 +111,26 @@ function TodayTasks() {
         </button>
         <h1 className="task-title">
           <Wrench className="task-icon" />
-          Today's Maintenance Tasks
+          Maintenance Tasks
         </h1>
+      </div>
+
+      {/* Calendar Date Selector */}
+      <div className="calendar-section">
+        <div className="calendar-header">
+          <Calendar size={20} className="calendar-icon" />
+          <span className="selected-date">{formatDateForDisplay(selectedDate)}</span>
+        </div>
+        <div className="date-selector">
+          <label htmlFor="date-picker" className="date-picker-label">Select Date:</label>
+          <input
+            id="date-picker"
+            type="date"
+            value={selectedDate}
+            onChange={(e) => setSelectedDate(e.target.value)}
+            className="date-picker"
+          />
+        </div>
       </div>
 
       {/* Filters */}
@@ -119,7 +152,7 @@ function TodayTasks() {
         </div>
         <div className="task-summary">
           <span className="task-count">
-            {tasks.filter(task => task.status === 'Completed').length}/{tasks.length} Tasks Completed
+            {filteredTasks.filter(task => task.status === 'Completed').length}/{filteredTasks.length} Tasks Completed
           </span>
         </div>
       </div>
@@ -127,7 +160,7 @@ function TodayTasks() {
       {/* Tasks List */}
       {filteredTasks.length === 0 ? (
         <div className="no-tasks-message">
-          No tasks found matching the selected filter
+          No tasks found for the selected date and filter
         </div>
       ) : (
         <div className="tasks-list">
@@ -210,6 +243,50 @@ function TodayTasks() {
         .task-icon {
           margin-right: 12px;
           color: #3b82f6;
+        }
+        
+        .calendar-section {
+          background-color: #f9fafb;
+          border-radius: 8px;
+          padding: 16px;
+          margin-bottom: 24px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        
+        .calendar-header {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        
+        .calendar-icon {
+          color: #4b5563;
+        }
+        
+        .selected-date {
+          font-size: 16px;
+          font-weight: 600;
+          color: #111827;
+        }
+        
+        .date-selector {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        
+        .date-picker-label {
+          font-size: 14px;
+          color: #4b5563;
+        }
+        
+        .date-picker {
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          background-color: white;
         }
         
         .filters-section {
