@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const initialIssues = [
   { 
     id: 1, 
-    vehicle: 'RIT-007', 
+    vehicle: 'R24-ARCOT', 
     title: 'Check Engine Light', 
     description: 'Check engine light comes on intermittently',
     severity: 'Critical',
@@ -15,7 +15,7 @@ const initialIssues = [
   },
   { 
     id: 2, 
-    vehicle: 'RIT-004', 
+    vehicle: 'R28-AGARAM', 
     title: 'Air Conditioning Failure', 
     description: 'AC not blowing cold air',
     severity: 'Moderate',
@@ -24,7 +24,7 @@ const initialIssues = [
   },
   { 
     id: 3, 
-    vehicle: 'RIT-009', 
+    vehicle: 'R11-ENNORE', 
     title: 'Steering Wheel Vibration', 
     description: 'Steering wheel vibrates at highway speeds',
     severity: 'Critical',
@@ -33,7 +33,7 @@ const initialIssues = [
   },
   { 
     id: 4, 
-    vehicle: 'RIT-002', 
+    vehicle: 'R22-THIRUTANI', 
     title: 'Bluetooth Connectivity', 
     description: 'Can\'t connect phones to vehicle bluetooth',
     severity: 'Minor',
