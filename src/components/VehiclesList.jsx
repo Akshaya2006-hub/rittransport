@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Truck, Search, ArrowLeft, AlertCircle, CheckCircle, MinusCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,8 +20,8 @@ const initialVehicles = [
   { busNo: 'R17', routeName: 'KOVILAMKKAM', status: 'Active' },
   { busNo: 'R20', routeName: 'ADAYAR', status: 'Active' },
   { busNo: 'R19', routeName: 'ICF', status: 'Active' },
-  { busNo: 'R23', routeName: 'CHINMAYANAGAR', status: 'Inactive' }, // Keeping this as inactive as per previous request
-  { busNo: 'R24', routeName: 'AVADI', status: 'Active' },
+  { busNo: 'R23', routeName: 'CHINMAYANAGAR', status: 'Inactive' },
+  { busNo: 'R24A', routeName: 'AVADI', status: 'Active' },
   { busNo: 'R20A', routeName: 'PAMMAL', status: 'Active' },
   { busNo: 'R19B', routeName: 'KANCHEEPURAM', status: 'Active' },
   { busNo: 'R25', routeName: 'ARCOT', status: 'Active' },
@@ -33,16 +33,33 @@ const initialVehicles = [
 ];
 
 function VehiclesList() {
-  const [vehicles, setVehicles] = useState(initialVehicles);
+  const [vehicles] = useState(initialVehicles);
   const [searchTerm, setSearchTerm] = useState('');
+  const [filteredVehicles, setFilteredVehicles] = useState(initialVehicles);
   const navigate = useNavigate();
 
-  // Filter vehicles based on search term
-  const filteredVehicles = vehicles.filter(vehicle =>
-    searchTerm === '' ||
-    vehicle.busNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    vehicle.routeName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Update filtered vehicles whenever search term changes
+  useEffect(() => {
+    if (!searchTerm.trim()) {
+      // If search term is empty, show all vehicles
+      setFilteredVehicles(vehicles);
+    } else {
+      // Convert search term to lowercase for case-insensitive comparison
+      const lowerSearchTerm = searchTerm.toLowerCase().trim();
+      
+      // Filter vehicles based on bus number or route name
+      const filtered = vehicles.filter(vehicle => 
+        vehicle.busNo.toLowerCase().includes(lowerSearchTerm) || 
+        vehicle.routeName.toLowerCase().includes(lowerSearchTerm)
+      );
+      
+      setFilteredVehicles(filtered);
+    }
+  }, [searchTerm, vehicles]);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   const handleBack = () => {
     navigate('/dashboard');
@@ -72,23 +89,31 @@ function VehiclesList() {
             type="text"
             placeholder="Search by bus number or route..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={handleSearch}
             className="search-input"
           />
         </div>
-        {/* Removed Filter */}
+      </div>
+
+      {/* Search results info */}
+      <div className="search-results-info">
+        {searchTerm && (
+          <p>
+            Showing {filteredVehicles.length} results for "{searchTerm}"
+          </p>
+        )}
       </div>
 
       {/* Vehicles List */}
       {filteredVehicles.length === 0 ? (
         <div className="no-vehicles-message">
-          No vehicles found matching your criteria
+          No vehicles found matching "{searchTerm}"
         </div>
       ) : (
         <div className="vehicles-list">
-          {filteredVehicles.map(vehicle => (
+          {filteredVehicles.map((vehicle, index) => (
             <div
-              key={vehicle.busNo}
+              key={`${vehicle.busNo}-${index}`}
               className={`vehicle-card ${vehicle.status === 'Inactive' ? 'vehicle-inactive' : (vehicle.status === 'Out of Service' ? 'vehicle-out-of-service' : '')}`}
             >
               <h3 className="vehicle-card-title">
@@ -156,8 +181,8 @@ function VehiclesList() {
 
         .controls-section {
           display: flex;
-          justify-content: flex-start; /* Aligned search to the left */
-          margin-bottom: 24px;
+          justify-content: flex-start;
+          margin-bottom: 16px;
         }
 
         .search-box {
@@ -167,7 +192,7 @@ function VehiclesList() {
           border: 1px solid #d1d5db;
           border-radius: 4px;
           padding: 8px 12px;
-          width: 40%; /* Adjusted width */
+          width: 40%;
         }
 
         .search-input {
@@ -175,6 +200,12 @@ function VehiclesList() {
           outline: none;
           margin-left: 8px;
           width: 100%;
+        }
+
+        .search-results-info {
+          margin-bottom: 16px;
+          color: #6b7280;
+          font-size: 14px;
         }
 
         .no-vehicles-message {
@@ -185,7 +216,7 @@ function VehiclesList() {
 
         .vehicles-list {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjusted minmax width */
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
           gap: 16px;
         }
 
@@ -196,9 +227,9 @@ function VehiclesList() {
           padding: 16px;
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
           transition: box-shadow 0.2s;
-          display: flex; /* Added flex to align title and badge */
-          justify-content: space-between; /* Space out title and badge */
-          align-items: center; /* Vertically align title and badge */
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
         }
 
         .vehicle-card:hover {
@@ -210,7 +241,7 @@ function VehiclesList() {
         }
 
         .vehicle-out-of-service {
-          border-left: 4px solid #f59e0b; /* Example color for out of service */
+          border-left: 4px solid #f59e0b;
         }
 
         .vehicle-card-title {
@@ -240,8 +271,8 @@ function VehiclesList() {
         }
 
         .status-out-of-service {
-          background-color: #ffedd5; /* Example background for out of service */
-          color: #d97706; /* Example color for out of service */
+          background-color: #ffedd5;
+          color: #d97706;
         }
       `}</style>
     </div>
