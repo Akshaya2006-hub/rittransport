@@ -29,7 +29,7 @@ const initialTasks = [
     description: 'Fix air conditioning system and recharge refrigerant',
     status: 'Pending',
     assignedTo: 'Ramesh',
-    date: '2025-05-15'
+    date: '2025-05-14'
   },
   { 
     id: 4, 
@@ -47,7 +47,7 @@ const initialTasks = [
     description: 'Replace worn timing and serpentine belts',
     status: 'In Progress',
     assignedTo: 'Mahesh',
-    date: '2025-05-15'
+    date: '2025-05-14'
   },
   { 
     id: 6, 
@@ -56,7 +56,7 @@ const initialTasks = [
     description: 'Replace non-functional headlight assembly',
     status: 'Pending',
     assignedTo: 'Dinesh',
-    date: '2025-05-16'
+    date: '2025-05-14'
   },
   { 
     id: 7, 
@@ -67,6 +67,7 @@ const initialTasks = [
     assignedTo: 'Venkat',
     date: '2025-05-14'
   }
+  
 ];
 
 function TodayTasks() {
